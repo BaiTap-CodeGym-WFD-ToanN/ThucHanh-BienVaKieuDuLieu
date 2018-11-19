@@ -10,7 +10,7 @@ console.log(square(5));
 // Function expression
 const squareFE = function (num: number): number {
   return num * num;
-}
+};
 
 // Higher-order function
 function add(a: number): Function {
