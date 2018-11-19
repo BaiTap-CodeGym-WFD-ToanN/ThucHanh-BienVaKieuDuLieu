@@ -3,101 +3,93 @@ import "./scss/styles.scss";
  * Variable and Data type
  */
 
-// tslint:disable
-
-/**
- * var vs let/const
- */
-/*
-function main() {
-  console.log("START");
-  if (true) {
-    var lang = "vi";
-    let target = "en-us";
-    console.log("inside block");
+//============================================
+(function main() {
+    console.log("START");
+    if (true) {
+        var lang = "vi";
+        let target = "en-us";
+        console.log("inside block");
+        console.log(target);
+    }
+    console.log(lang);
     console.log(target);
-  }
-  console.log(lang);
-  console.log(target);
-}
- */
-/*
-function main() {
-  var x = 5;
-  console.log(x);
-  var x = 10;
-  console.log(x);
+})();
 
-  let y = 55;
-  console.log(y);
-  let y = 100;
-  console.log(y);
-}
-*/
+//Expect: lỗi xảy ra (TS2304: Cannot find name 'target'.)
+//============================================
+(function main() {
+    var x = 5;
+    console.log(x);
+    var x = 10;
+    console.log(x);
 
-/*
-function main() {
-  console.log(x);
-  var x = 5;
+    let y = 55;
+    console.log(y);
+    let y = 100;
+    console.log(y);
+})();
 
-  console.log(y);
-  let y = 10;
-}
- */
+//Expect: lỗi xảy ra (TS2451: Cannot redeclare block-scoped variable 'y'.)
+//============================================
+(function main() {
+    console.log(x);
+    var x = 5;
 
-/**
- * Data types
- */
-/*
-function main() {
-  let message: string;
-  let total: number = 100;
-  let isProduction = true;
-  let prices: Array<number> = [120, 88, 60];
-  let languages: string[] = ['vi', 'en-us'];
-  let now = new Date();
-  let unknown: any;
+    console.log(y);
+    let y = 10;
+})();
 
-  enum Direction {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-  };
+//Expect: lỗi xảy ra (TS2448: Block-scoped variable 'y' used before its declaration.)
 
-  function log(msg: string): void {
-    console.log(msg)
-  }
 
-  interface IPost {
-    id: string;
-    title: string;
-    body?: string;
-  }
+//============================================
+(function main() {
+    let message: string;
+    let total: number = 100;
+    let isProduction = true;
+    let prices: Array<number> = [120, 88, 60];
+    let languages: string[] = ['vi', 'en-us'];
+    let now = new Date();
+    let unknown: any;
 
-  isProduction = false;
-  unknown = Direction.UP;
-  unknown = 'changed';
+    enum Direction {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    };
 
-  const post: IPost = {
+    function log(msg: string): void {
+        console.log(msg)
+    }
 
-  };
-  message = 50;
+    interface IPost {
+        id: string;
+        title: string;
+        body?: string;
+    }
 
-  function getPost(postId: string): IPost {
-    // do something to retrieve post
-    return {
-      id: postId,
-      title: 'Post Title',
-      body: 'Post Body',
-      extra: 'data'
-    } as IPost;
-  }
-}
- */
+    isProduction = false;
+    unknown = Direction.UP;
+    unknown = 'changed';
 
-function main() {}
+    const post: IPost = {
 
-// tslint:enable
+    };
+    message = 50;
 
-main();
+    function getPost(postId: string): IPost {
+        // do something to retrieve post
+        return {
+            id: postId,
+            title: 'Post Title',
+            body: 'Post Body',
+            extra: 'data'
+        } as IPost;
+    }
+})();
+
+//Expect: lỗi xảy ra
+//TS2322: Type '{}' is not assignable to type 'IPost'. Property 'id' is missing in type '{}'.
+  //  TS2322: Type '50' is not assignable to type 'string'.
